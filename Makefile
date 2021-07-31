@@ -33,7 +33,7 @@ RM			=	rm -rf
 
 # === Sources === #
 
-SRCS		=	${addprefix ${PATH_SRCS}/, main.c}
+SRCS		=	${addprefix ${PATH_SRCS}/, main.c erro.c parsing.c init.c}
 
 # === Objects === #
 
