@@ -6,7 +6,7 @@
 /*   By: obelair <obelair@student.42Lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/31 16:30:00 by obelair           #+#    #+#             */
-/*   Updated: 2021/08/10 14:49:51 by obelair          ###   ########lyon.fr   */
+/*   Updated: 2021/08/11 13:28:07 by obelair          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,16 @@ int	main(int ac, char **ag)
 	if (ascending_sort(td.a))
 	{
 		init_chunk(&td);
-		if (!descending_sort(td.a))
-		{
-			while (i < td.len_a - 1)
-			{
-				// printf("asc_a : %d | adr : %p\n", ascending_sort(td.a), td.a);
-				ra(&td, 0);
-				i++;
-			}
-			// printf("asc_a : %d | adr : %p | ind : %d\n", ascending_sort(td.a), td.a, td.a->index);
-		}
+		// if (!descending_sort(td.a))
+		// {
+		// 	while (i < td.len_a - 1)
+		// 	{
+		// 		// printf("asc_a : %d | adr : %p\n", ascending_sort(td.a), td.a);
+		// 		ra(&td, 0);
+		// 		i++;
+		// 	}
+		// 	// printf("asc_a : %d | adr : %p | ind : %d\n", ascending_sort(td.a), td.a, td.a->index);
+		// }
 		while (ascending_sort(td.a))
 			sorting_list(&td);
 	}
@@ -67,7 +67,7 @@ int	main(int ac, char **ag)
 		i++;
 	}
 	printf("------------------------------------------------------------------------------------------------\n");
-	printf("\t\t\t\t|\tsize_a\t:\t%d\t|\tsize_\t:\t%d\n", td.len_a, td.len_b);
+	printf("\t\t\t\t|\tsize_a\t:\t%d\t|\tsize_b\t:\t%d\n", td.len_a, td.len_b);
 	printf("------------------------------------------------------------------------------------------------\n");
 	printf("nb_chunk : [%d-%d] |", td.ind_chunk[0].start, td.ind_chunk[0].end);
 	i = 1;

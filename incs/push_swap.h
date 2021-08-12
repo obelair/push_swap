@@ -6,7 +6,7 @@
 /*   By: obelair <obelair@student.42Lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/31 16:31:13 by obelair           #+#    #+#             */
-/*   Updated: 2021/08/10 14:40:00 by obelair          ###   ########lyon.fr   */
+/*   Updated: 2021/08/11 13:52:41 by obelair          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ void	sorting_list(t_data *td);
 
 void	find_first(t_data *td, int inter);
 void	find_second(t_data *td, int inter);
+int		count_element(t_data *td, int inter);
 
 int		cmp_hold(t_data *td);
 void	cmp_top_stack(t_data *td);

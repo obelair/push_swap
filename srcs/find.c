@@ -6,7 +6,7 @@
 /*   By: obelair <obelair@student.42Lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/06 22:02:52 by obelair           #+#    #+#             */
-/*   Updated: 2021/08/10 10:55:52 by obelair          ###   ########lyon.fr   */
+/*   Updated: 2021/08/11 13:52:25 by obelair          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,23 @@ int	index_element(t_stack *list, t_stack *hold)
 	{
 		i++;
 		list = list->next;
+	}
+	return (i);
+}
+
+int	count_element(t_data *td, int inter)
+{
+	int		i;
+	t_stack	*cur;
+
+	cur = td->a;
+	i = 0;
+	while (cur)
+	{
+		if (td->ind_chunk[inter].start <= cur->index
+			&& cur->index <= td->ind_chunk[inter].end)
+			i++;
+		cur = cur->next;
 	}
 	return (i);
 }

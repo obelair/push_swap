@@ -6,7 +6,7 @@
 /*   By: obelair <obelair@student.42Lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/02 18:32:25 by obelair           #+#    #+#             */
-/*   Updated: 2021/08/08 10:44:00 by obelair          ###   ########lyon.fr   */
+/*   Updated: 2021/08/12 14:18:05 by obelair          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,9 @@ void	rr(t_data *td)
 	ra(td, 1);
 	rb(td, 1);
 	printf("rr\n");
+}
+
+void	rev_recup_hold(t_data *td, int rot)
+{
+	
 }
