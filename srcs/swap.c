@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   swap.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: obelair <obelair@student.42Lyon.fr>        +#+  +:+       +#+        */
+/*   By: obelair <obelair@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/02 18:32:42 by obelair           #+#    #+#             */
-/*   Updated: 2021/08/08 10:44:21 by obelair          ###   ########lyon.fr   */
+/*   Updated: 2021/08/27 17:35:10 by obelair          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,10 @@ void	sa(t_data *td, int ss)
 	tmp->next = td->a->next;
 	td->a->next = tmp;
 	if (!ss)
+	{
 		printf("sa\n");
+		// print_stack(td);
+	}
 }
 
 void	sb(t_data *td, int ss)
@@ -33,7 +36,10 @@ void	sb(t_data *td, int ss)
 	tmp->next = td->b->next;
 	td->b->next = tmp;
 	if (!ss)
+	{
 		printf("sb\n");
+		// print_stack(td);
+	}
 }
 
 void	ss(t_data *td)
@@ -41,4 +47,5 @@ void	ss(t_data *td)
 	sa(td, 1);
 	sb(td, 1);
 	printf("ss\n");
+	// print_stack(td);
 }

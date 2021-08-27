@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rev_rotate.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: obelair <obelair@student.42Lyon.fr>        +#+  +:+       +#+        */
+/*   By: obelair <obelair@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/02 18:32:08 by obelair           #+#    #+#             */
-/*   Updated: 2021/08/08 10:43:18 by obelair          ###   ########lyon.fr   */
+/*   Updated: 2021/08/27 17:35:10 by obelair          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,10 @@ void	rra(t_data *td, int rrr)
 	cur->next = NULL;
 	add_element(&td->a, tmp, 0);
 	if (!rrr)
+	{
 		printf("rra\n");
+		// print_stack(td);
+	}
 }
 
 void	rrb(t_data *td, int rrr)
@@ -39,7 +42,10 @@ void	rrb(t_data *td, int rrr)
 	cur->next = NULL;
 	add_element(&td->b, tmp, 0);
 	if (!rrr)
+	{
 		printf("rrb\n");
+		// print_stack(td);
+	}
 }
 
 void	rrr(t_data *td)
@@ -47,4 +53,5 @@ void	rrr(t_data *td)
 	rra(td, 1);
 	rrb(td, 1);
 	printf("rrr\n");
+	// print_stack(td);
 }

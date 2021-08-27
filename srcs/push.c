@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: obelair <obelair@student.42Lyon.fr>        +#+  +:+       +#+        */
+/*   By: obelair <obelair@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/02 18:32:50 by obelair           #+#    #+#             */
-/*   Updated: 2021/08/07 14:19:40 by obelair          ###   ########lyon.fr   */
+/*   Updated: 2021/08/27 17:35:10 by obelair          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	pa(t_data *td)
 	td->len_a = size_element(td->a);
 	td->len_b = size_element(td->b);
 	printf("pa\n");
+	// print_stack(td);
 }
 
 void	pb(t_data *td)
@@ -36,4 +37,5 @@ void	pb(t_data *td)
 	td->len_a = size_element(td->a);
 	td->len_b = size_element(td->b);
 	printf("pb\n");
+	// print_stack(td);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   find.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: obelair <obelair@student.42Lyon.fr>        +#+  +:+       +#+        */
+/*   By: obelair <obelair@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/06 22:02:52 by obelair           #+#    #+#             */
-/*   Updated: 2021/08/11 13:52:25 by obelair          ###   ########lyon.fr   */
+/*   Updated: 2021/08/27 07:48:29 by obelair          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,16 +43,34 @@ void	find_second(t_data *td, int inter)
 	}
 }
 
-int	index_element(t_stack *list, t_stack *hold)
+void	find_last(t_data *td)
 {
-	int	i;
+	t_stack	*cur;
 
+	cur = td->b;
+	td->first_hold = cur->index;
+	while (cur)
+	{
+		if (td->first_hold < cur->index)
+			td->first_hold = cur->index;
+		cur = cur->next;
+	}
+}
+
+int	find_rot(t_data *td)
+{
+	t_stack	*cur;
+	int		i;
+
+	cur = td->b;
 	i = 0;
-	while (list != hold)
+	while (cur->index != td->first_hold)
 	{
 		i++;
-		list = list->next;
+		cur = cur->next;
 	}
+	if (i > td->len_b * 0.5)
+		return (i - td->len_b);
 	return (i);
 }
 

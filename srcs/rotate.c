@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rotate.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: obelair <obelair@student.42Lyon.fr>        +#+  +:+       +#+        */
+/*   By: obelair <obelair@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/02 18:32:25 by obelair           #+#    #+#             */
-/*   Updated: 2021/08/12 14:18:05 by obelair          ###   ########lyon.fr   */
+/*   Updated: 2021/08/27 17:35:10 by obelair          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,10 @@ void	ra(t_data *td, int rr)
 	tmp->next = NULL;
 	add_element(&td->a, tmp, 1);
 	if (!rr)
+	{
 		printf("ra\n");
+		// print_stack(td);
+	}
 }
 
 void	rb(t_data *td, int rr)
@@ -29,11 +32,14 @@ void	rb(t_data *td, int rr)
 	t_stack	*tmp;
 
 	tmp = td->b;
-	td->b = td->a->next;
+	td->b = td->b->next;
 	tmp->next = NULL;
 	add_element(&td->b, tmp, 1);
 	if (!rr)
+	{
 		printf("rb\n");
+		// print_stack(td);
+	}
 }
 
 void	rr(t_data *td)
@@ -41,9 +47,5 @@ void	rr(t_data *td)
 	ra(td, 1);
 	rb(td, 1);
 	printf("rr\n");
-}
-
-void	rev_recup_hold(t_data *td, int rot)
-{
-	
+	// print_stack(td);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   comp.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: obelair <obelair@student.42Lyon.fr>        +#+  +:+       +#+        */
+/*   By: obelair <obelair@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/08 10:06:58 by obelair           #+#    #+#             */
-/*   Updated: 2021/08/10 13:35:53 by obelair          ###   ########lyon.fr   */
+/*   Updated: 2021/08/27 07:50:41 by obelair          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	cmp_hold(t_data *td)
 	{
 		if (cur->index == td->first_hold)
 			first_ind = i;
-		else if (cur->index == td->second_hold)
+		if (cur->index == td->second_hold)
 			second_ind = i;
 		i++;
 		cur = cur->next;
@@ -70,8 +70,8 @@ int	cmp_same_chunk(t_data *td, t_stack *list)
 		i++;
 	}
 	if (chunk1 && chunk2)
-		return (0);
-	return (1);
+		return (1);
+	return (0);
 }
 
 void	cmp_top_stack(t_data *td)
@@ -85,6 +85,14 @@ void	cmp_top_stack(t_data *td)
 				&& (td->b->index + 1 == (td->b->next)->index
 					|| cmp_same_chunk(td, td->b))))
 			ss(td);
+		if (td->a->index > (td->a->next)->index
+			&& (td->a->index - 1 == (td->a->next)->index
+				|| cmp_same_chunk(td, td->a)))
+			sa(td, 0);
+		if (td->b->index < (td->b->next)->index
+			&& (td->b->index + 1 == (td->b->next)->index
+				|| cmp_same_chunk(td, td->b)))
+			sb(td, 0);
 	}
 	else if (td->len_a > 1)
 	{

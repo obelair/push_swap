@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: obelair <obelair@student.42Lyon.fr>        +#+  +:+       +#+        */
+/*   By: obelair <obelair@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/06 16:26:25 by obelair           #+#    #+#             */
-/*   Updated: 2021/08/11 17:16:53 by obelair          ###   ########lyon.fr   */
+/*   Updated: 2021/08/27 17:35:34 by obelair          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,10 @@
 
 int	ascending_sort(t_stack *list)
 {
-	// printf("-----\n");
 	if (!list)
 		return (0);
 	while (list->next)
 	{
-		// printf("i : %d | j : %d | cmp : %d\n", list->index, (list->next)->index, list->index + 1 != (list->next)->index);
 		if (list->index + 1 != (list->next)->index)
 			return (1);
 		list = list->next;
@@ -50,7 +48,6 @@ void	sorting_list(t_data *td)
 		inter++;
 	find_first(td, inter);
 	find_second(td, inter);
-	printf("inter : %d / start : %d / end : %d | f_hold : %d / s_hold : %d\n", inter, td->ind_chunk[inter].start, td->ind_chunk[inter].end, td->first_hold, td->second_hold);
 	i = cmp_hold(td);
 	cmp_top_stack(td);
 	if (i > 0 && ascending_sort(td->a))
@@ -75,4 +72,29 @@ void	sorting_list(t_data *td)
 	}
 	if (ascending_sort(td->a))
 		pb(td);
+}
+
+void	rev_sorting_list(t_data *td)
+{
+	int	i;
+
+	find_last(td);
+	i = find_rot(td);
+	if (i < 0)
+	{
+		while (i < 0)
+		{
+			rrb(td, 0);
+			i++;
+		}
+	}
+	else if (i > 0)
+	{
+		while (i >= 0)
+		{
+			rb(td, 0);
+			i--;
+		}
+	}
+	pa(td);
 }

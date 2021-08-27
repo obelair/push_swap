@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: obelair <obelair@student.42Lyon.fr>        +#+  +:+       +#+        */
+/*   By: obelair <obelair@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/31 16:31:13 by obelair           #+#    #+#             */
-/*   Updated: 2021/08/11 13:52:41 by obelair          ###   ########lyon.fr   */
+/*   Updated: 2021/08/27 07:48:34 by obelair          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,12 @@ void	init_stack(t_data *td, int size);
 int		ascending_sort(t_stack *list);
 int		descending_sort(t_stack *list);
 void	sorting_list(t_data *td);
+void	rev_sorting_list(t_data *td);
 
 void	find_first(t_data *td, int inter);
 void	find_second(t_data *td, int inter);
+void	find_last(t_data *td);
+int		find_rot(t_data *td);
 int		count_element(t_data *td, int inter);
 
 int		cmp_hold(t_data *td);
@@ -83,5 +86,9 @@ void	rr(t_data *td);
 void	rra(t_data *td, int rrr);
 void	rrb(t_data *td, int rrr);
 void	rrr(t_data *td);
+
+/* Don't keep */
+
+void	print_stack(t_data *td);
 
 #endif
