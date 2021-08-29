@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   chunk.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: obelair <obelair@student.42Lyon.fr>        +#+  +:+       +#+        */
+/*   By: obelair <obelair@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/06 15:42:08 by obelair           #+#    #+#             */
-/*   Updated: 2021/08/06 22:22:19 by obelair          ###   ########lyon.fr   */
+/*   Updated: 2021/08/28 21:46:37 by obelair          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,8 @@ void	init_chunk(t_data *td)
 		td->chunk = (int)chunk + 1;
 	else
 		td->chunk = (int)chunk;
-	if (td->chunk < 2)
-		td->chunk = 2;
+	// if (td->chunk < 2)
+	// 	td->chunk = 2;
 	td->ind_chunk = ft_calloc(td->chunk, sizeof(t_chunk));
 	if (ft_lstadd_void(&td->list, td->ind_chunk, 0))
 		ft_exit(td, 3, "");

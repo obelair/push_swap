@@ -6,7 +6,7 @@
 /*   By: obelair <obelair@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/31 16:30:00 by obelair           #+#    #+#             */
-/*   Updated: 2021/08/27 17:28:00 by obelair          ###   ########lyon.fr   */
+/*   Updated: 2021/08/29 18:52:55 by obelair          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,24 @@ int	main(int ac, char **ag)
 	t_data	td;
 	// t_stack	*cur_a;
 	// t_stack	*cur_b;
-	int		i;
+	// int		i;
 
-	i = 0;
+	// i = 0;
 	parsing_arg(&td, ac, ag);
 	if (ascending_sort(td.a))
 	{
 		init_chunk(&td);
+		if (td.len_a == 3)
+			sorting_3(&td);
+		else if (td.len_a == 5)
+			sorting_5(&td);
+		else
+		{
+			while (ascending_sort(td.a))
+				sorting_list(&td);
+			while (td.len_b > 0)
+				rev_sorting_list(&td);
+		}
 		// if (!descending_sort(td.a))
 		// {
 		// 	while (i < td.len_a - 1)
@@ -34,12 +45,8 @@ int	main(int ac, char **ag)
 		// 	}
 		// 	// printf("asc_a : %d | adr : %p | ind : %d\n", ascending_sort(td.a), td.a, td.a->index);
 		// }
-		while (ascending_sort(td.a))
-			sorting_list(&td);
-		while (td.len_b > 0)
-			rev_sorting_list(&td);
 	}
-	i = 0;
+	// i = 0;
 	// printf("================================================================================================\n");
 	// printf("\tNb\t|\tInd\t|\tA.v\t|\tA.i\t|\tB.v\t|\tB.i\n");
 	// printf("================================================================================================\n");

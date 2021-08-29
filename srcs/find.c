@@ -6,7 +6,7 @@
 /*   By: obelair <obelair@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/06 22:02:52 by obelair           #+#    #+#             */
-/*   Updated: 2021/08/27 07:48:29 by obelair          ###   ########lyon.fr   */
+/*   Updated: 2021/08/28 18:21:22 by obelair          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,34 +43,48 @@ void	find_second(t_data *td, int inter)
 	}
 }
 
-void	find_last(t_data *td)
+void	find_max(t_stack *stack, int *ind)
 {
 	t_stack	*cur;
 
-	cur = td->b;
-	td->first_hold = cur->index;
+	cur = stack;
+	*ind = cur->index;
 	while (cur)
 	{
-		if (td->first_hold < cur->index)
-			td->first_hold = cur->index;
+		if (*ind < cur->index)
+			*ind = cur->index;
 		cur = cur->next;
 	}
 }
 
-int	find_rot(t_data *td)
+void	find_min(t_stack *stack, int *ind)
+{
+	t_stack	*cur;
+
+	cur = stack;
+	*ind = cur->index;
+	while (cur)
+	{
+		if (*ind > cur->index)
+			*ind = cur->index;
+		cur = cur->next;
+	}
+}
+
+int	find_rot(t_stack *stack, int size, int ind)
 {
 	t_stack	*cur;
 	int		i;
 
-	cur = td->b;
+	cur = stack;
 	i = 0;
-	while (cur->index != td->first_hold)
+	while (cur->index != ind)
 	{
 		i++;
 		cur = cur->next;
 	}
-	if (i > td->len_b * 0.5)
-		return (i - td->len_b);
+	if (i > size * 0.5)
+		return (i - size);
 	return (i);
 }
 
