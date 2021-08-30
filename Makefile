@@ -34,7 +34,7 @@ RM			=	rm -rf
 # === Sources === #
 
 SRCS		=	${addprefix ${PATH_SRCS}/, main.c error.c parsing.c init.c push.c swap.c rotate.c rev_rotate.c \
-					chunk.c sort.c find.c comp.c\
+					chunk.c sort.c find.c comp.c use.c\
 					stack_new.c stack_last.c stack_size.c stack_clear.c stack_add.c\
 					print.c}
 

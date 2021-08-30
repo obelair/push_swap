@@ -6,13 +6,13 @@
 /*   By: obelair <obelair@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/06 16:26:25 by obelair           #+#    #+#             */
-/*   Updated: 2021/08/29 19:09:46 by obelair          ###   ########.fr       */
+/*   Updated: 2021/08/30 15:50:02 by obelair          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	ascending_sort(t_stack *list)
+int	ascending_sort(t_nbr *list)
 {
 	if (!list)
 		return (0);
@@ -25,7 +25,7 @@ int	ascending_sort(t_stack *list)
 	return (0);
 }
 
-int	descending_sort(t_stack *list)
+int	descending_sort(t_nbr *list)
 {
 	if (!list)
 		return (0);
@@ -40,11 +40,11 @@ int	descending_sort(t_stack *list)
 
 void	sorting_3(t_data *td)
 {
-	find_max(td->a, &td->first_hold);
+	find_min_max(td->a->list, &td->first_hold, 0);
 	cmp_top_stack(td);
-	if (td->a->index == td->first_hold && ascending_sort(td->a))
+	if (td->a->list->index == td->first_hold && ascending_sort(td->a->list))
 		ra(td, 0);
-	else if (ascending_sort(td->a))
+	else if (ascending_sort(td->a->list))
 		rra(td, 0);
 	cmp_top_stack(td);
 }
@@ -53,51 +53,53 @@ void	sorting_5(t_data *td)
 {
 	int	i;
 
-	find_min(td->a, &td->first_hold);
-	find_max(td->a, &td->second_hold);
-	i = find_rot(td->a, td->len_a, td->first_hold);
-	if (ft_abs(find_rot(td->a, td->len_a, td->first_hold)) > ft_abs(find_rot(td->a, td->len_a, td->second_hold)))
-		i = find_rot(td->a, td->len_a, td->second_hold);
-	if (i > 0 && ascending_sort(td->a))
+	find_min_max(td->a->list, &td->first_hold, 0);
+	find_min_max(td->a->list, &td->second_hold, 1);
+	i = find_rot(td->a->list, td->a->len, td->first_hold);
+	if (ft_abs(find_rot(td->a->list, td->a->len, td->first_hold)) > ft_abs(find_rot(td->a->list, td->a->len, td->second_hold)))
+		i = find_rot(td->a->list, td->a->len, td->second_hold);
+	if (i > 0 && ascending_sort(td->a->list))
 	{
-		while (i > 0 && ascending_sort(td->a))
+		while (i > 0 && ascending_sort(td->a->list))
 		{
 			ra(td, 0);
 			i--;
 		}
 	}
-	else if (i < 0 && ascending_sort(td->a))
+	else if (i < 0 && ascending_sort(td->a->list))
 	{
-		while (i < 0 && ascending_sort(td->a))
+		while (i < 0 && ascending_sort(td->a->list))
 		{
 			rra(td, 0);
 			i++;
 		}
 	}
-	if (ascending_sort(td->a))
+	if (td->a->list->index == td->second_hold && !ascending_sort(td->a->list->next))
+		ra(td, 0);
+	else if (ascending_sort(td->a->list))
 	{
 		pb(td);
-		if (td->first_hold == td->b->index)
-			i = find_rot(td->a, td->len_a, td->second_hold);
+		if (td->first_hold == td->b->list->index)
+			i = find_rot(td->a->list, td->a->len, td->second_hold);
 		else
-			i = find_rot(td->a, td->len_a, td->first_hold);
-		if (i > 0 && ascending_sort(td->a))
+			i = find_rot(td->a->list, td->a->len, td->first_hold);
+		if (i > 0 && ascending_sort(td->a->list))
 		{
-			while (i > 0 && ascending_sort(td->a))
+			while (i > 0 && ascending_sort(td->a->list))
 			{
 				ra(td, 0);
 				i--;
 			}
 		}
-		else if (i < 0 && ascending_sort(td->a))
+		else if (i < 0 && ascending_sort(td->a->list))
 		{
-			while (i < 0 && ascending_sort(td->a))
+			while (i < 0 && ascending_sort(td->a->list))
 			{
 				rra(td, 0);
 				i++;
 			}
 		}
-		if (ascending_sort(td->a))
+		if (ascending_sort(td->a->list))
 		{
 			pb(td);
 			sorting_3(td);
@@ -105,7 +107,7 @@ void	sorting_5(t_data *td)
 			ra(td, 0);
 		}
 		pa(td);
-		if (ascending_sort(td->a))
+		if (ascending_sort(td->a->list))
 			ra(td, 0);
 	}
 }
@@ -118,46 +120,46 @@ void	sorting_list(t_data *td)
 	inter = 0;
 	while (!count_element(td, inter))
 		inter++;
-	find_first(td, inter);
-	find_second(td, inter);
+	find_hold(td, inter, 1);
+	find_hold(td, inter, 0);
 	i = cmp_hold(td);
 	cmp_top_stack(td);
-	if (i > 0 && ascending_sort(td->a))
+	if (i > 0 && ascending_sort(td->a->list))
 	{
-		while (i > 0 && ascending_sort(td->a))
+		while (i > 0 && ascending_sort(td->a->list))
 		{
 			ra(td, 0);
-			if (td->first_hold != td->a->index && td->second_hold != td->a->index)
+			if (td->first_hold != td->a->list->index && td->second_hold != td->a->list->index)
 				cmp_top_stack(td);
 			i--;
 		}
 	}
-	else if (i < 0 && ascending_sort(td->a))
+	else if (i < 0 && ascending_sort(td->a->list))
 	{
-		while (i < 0 && ascending_sort(td->a))
+		while (i < 0 && ascending_sort(td->a->list))
 		{
 			rra(td, 0);
-			if (td->first_hold != td->a->index && td->second_hold != td->a->index)
+			if (td->first_hold != td->a->list->index && td->second_hold != td->a->list->index)
 				cmp_top_stack(td);
 			i++;
 		}
 	}
-	if (ascending_sort(td->a))
+	if (ascending_sort(td->a->list))
 	{
 		pb(td);
-		if (td->len_a == 5)
+		if (td->a->len == 5)
 			sorting_5(td);
 	}
 }
 
 void	rev_sorting_list(t_data *td)
 {
-	t_stack *cur;
+	t_nbr	*cur;
 	int		check;
 	int		i;
 
-	find_max(td->b, &td->second_hold);
-	i = find_rot(td->b, td->len_b, td->second_hold);
+	find_min_max(td->b->list, &td->second_hold, 0);
+	i = find_rot(td->b->list, td->b->len, td->second_hold);
 	if (i < 0)
 	{
 		while (i < 0)
@@ -174,13 +176,13 @@ void	rev_sorting_list(t_data *td)
 			i--;
 		}
 	}
-	find_min(td->a, &td->first_hold);
-	find_max(td->a, &td->second_hold);
-	cur = td->a;
+	find_min_max(td->a->list, &td->first_hold, 1);
+	find_min_max(td->a->list, &td->second_hold, 0);
+	cur = td->a->list;
 	check = 0;
-	if (td->b->index < td->first_hold || td->b->index > td->second_hold)
+	if (td->b->list->index < td->first_hold || td->b->list->index > td->second_hold)
 	{
-		i = find_rot(td->a, td->len_a, td->first_hold);
+		i = find_rot(td->a->list, td->a->len, td->first_hold);
 		if (i < 0)
 		{
 			while (i < 0)
@@ -203,7 +205,7 @@ void	rev_sorting_list(t_data *td)
 		i = 0;
 		while (cur->next && cur->index != td->second_hold && !check)
 		{
-			if (cur->index < td->b->index && td->b->index < (cur->next)->index)
+			if (cur->index < td->b->list->index && td->b->list->index < (cur->next)->index)
 				check = 1;
 			i++;
 			cur = cur->next;
@@ -214,13 +216,13 @@ void	rev_sorting_list(t_data *td)
 			cur = cur->next;
 			while (cur->next && !check)
 			{
-				if (cur->index < td->b->index && td->b->index < (cur->next)->index)
+				if (cur->index < td->b->list->index && td->b->list->index < (cur->next)->index)
 					check = 1;
 				i++;
 				cur = cur->next;
 			}
 		}
-		if (i <= td->len_a / 2 && check)
+		if (i <= td->a->len / 2 && check)
 		{
 			while (i > 0)
 			{
@@ -230,7 +232,7 @@ void	rev_sorting_list(t_data *td)
 		}
 		else if (check)
 		{
-			i = i - td->len_a;
+			i = i - td->a->len;
 			while (i < 0)
 			{
 				rra(td, 0);
@@ -239,10 +241,10 @@ void	rev_sorting_list(t_data *td)
 		}
 	}
 	pa(td);
-	if (!td->len_b)
+	if (!td->b->len)
 	{
-		find_min(td->a, &td->first_hold);
-		i = find_rot(td->a, td->len_a, td->first_hold);
+		find_min_max(td->a->list, &td->first_hold, 1);
+		i = find_rot(td->a->list, td->a->len, td->first_hold);
 		if (i < 0)
 		{
 			while (i < 0)

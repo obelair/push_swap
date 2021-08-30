@@ -6,7 +6,7 @@
 /*   By: obelair <obelair@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/02 18:32:50 by obelair           #+#    #+#             */
-/*   Updated: 2021/08/29 19:04:41 by obelair          ###   ########.fr       */
+/*   Updated: 2021/08/30 03:19:01 by obelair          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,28 @@
 
 void	pa(t_data *td)
 {
-	t_stack	*tmp;
+	t_nbr	*tmp;
 
-	tmp = td->b;
-	td->b = td->b->next;
+	tmp = td->b->list;
+	td->b->list = td->b->list->next;
 	tmp->next = NULL;
-	add_element(&td->a, tmp, 0);
-	td->len_a = size_element(td->a);
-	td->len_b = size_element(td->b);
+	add_element(&td->a->list, tmp, 0);
+	td->a->len = size_element(td->a->list);
+	td->b->len = size_element(td->b->list);
 	printf("pa\n");
 	// print_stack(td);
 }
 
 void	pb(t_data *td)
 {
-	t_stack	*tmp;
+	t_nbr	*tmp;
 
-	tmp = td->a;
-	td->a = td->a->next;
+	tmp = td->a->list;
+	td->a->list = td->a->list->next;
 	tmp->next = NULL;
-	add_element(&td->b, tmp, 0);
-	td->len_a = size_element(td->a);
-	td->len_b = size_element(td->b);
+	add_element(&td->b->list, tmp, 0);
+	td->a->len = size_element(td->a->list);
+	td->b->len = size_element(td->b->list);
 	printf("pb\n");
 	// print_stack(td);
 }

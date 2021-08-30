@@ -6,7 +6,7 @@
 /*   By: obelair <obelair@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/08 10:06:58 by obelair           #+#    #+#             */
-/*   Updated: 2021/08/28 19:41:53 by obelair          ###   ########.fr       */
+/*   Updated: 2021/08/30 15:55:59 by obelair          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ int	cmp_hold(t_data *td)
 	int		first_ind;
 	int		second_ind;
 	int		i;
-	t_stack	*cur;
+	t_nbr	*cur;
 
-	cur = td->a;
+	cur = td->a->list;
 	first_ind = -1;
 	second_ind = -1;
 	i = 0;
@@ -47,10 +47,10 @@ int	cmp_hold(t_data *td)
 		i++;
 		cur = cur->next;
 	}
-	return (cmp_r_or_rr(td, first_ind, td->len_a - second_ind));
+	return (cmp_r_or_rr(td, first_ind, td->a->len - second_ind));
 }
 
-int	cmp_same_chunk(t_data *td, t_stack *list)
+int	cmp_same_chunk(t_data *td, t_nbr *list)
 {
 	int	chunk1;
 	int	chunk2;
@@ -76,36 +76,29 @@ int	cmp_same_chunk(t_data *td, t_stack *list)
 
 void	cmp_top_stack(t_data *td)
 {
-	if (td->len_a > 1 && td->len_b > 1)
+	if (td->a->len > 1 && td->b->len > 1)
 	{
-		if ((td->a->index > (td->a->next)->index
-				&& (td->a->index - 1 == (td->a->next)->index
-					|| cmp_same_chunk(td, td->a)))
-			&& (td->b->index < (td->b->next)->index
-				&& (td->b->index + 1 == (td->b->next)->index
-					|| cmp_same_chunk(td, td->b))))
+		if ((td->a->list->index > (td->a->list->next)->index
+				&& (td->a->list->index - 1 == (td->a->list->next)->index
+					|| cmp_same_chunk(td, td->a->list)))
+			&& (td->b->list->index < (td->b->list->next)->index
+				&& (td->b->list->index + 1 == (td->b->list->next)->index
+					|| cmp_same_chunk(td, td->b->list))))
 			ss(td);
-		if (td->a->index > (td->a->next)->index
-			&& (td->a->index - 1 == (td->a->next)->index
-				|| cmp_same_chunk(td, td->a)))
+		if (td->a->list->index > (td->a->list->next)->index
+			&& (td->a->list->index - 1 == (td->a->list->next)->index
+				|| cmp_same_chunk(td, td->a->list)))
 			sa(td, 0);
-		if (td->b->index < (td->b->next)->index
-			&& (td->b->index + 1 == (td->b->next)->index
-				|| cmp_same_chunk(td, td->b)))
+		if (td->b->list->index < (td->b->list->next)->index
+			&& (td->b->list->index + 1 == (td->b->list->next)->index
+				|| cmp_same_chunk(td, td->b->list)))
 			sb(td, 0);
 	}
-	else if (td->len_a > 1)
+	else if (td->a->len > 1)
 	{
-		if (td->a->index > (td->a->next)->index
-			&& (td->a->index - 1 == (td->a->next)->index
-				|| cmp_same_chunk(td, td->a)))
+		if (td->a->list->index > (td->a->list->next)->index
+			&& (td->a->list->index - 1 == (td->a->list->next)->index
+				|| cmp_same_chunk(td, td->a->list)))
 			sa(td, 0);
-	}
-	else if (td->len_b > 1)
-	{
-		if (td->b->index < (td->b->next)->index
-			&& (td->b->index + 1 == (td->b->next)->index
-				|| cmp_same_chunk(td, td->b)))
-			sb(td, 0);
 	}
 }

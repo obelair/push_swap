@@ -6,7 +6,7 @@
 /*   By: obelair <obelair@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/31 16:30:00 by obelair           #+#    #+#             */
-/*   Updated: 2021/08/29 18:52:55 by obelair          ###   ########.fr       */
+/*   Updated: 2021/08/30 03:32:13 by obelair          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,18 +21,18 @@ int	main(int ac, char **ag)
 
 	// i = 0;
 	parsing_arg(&td, ac, ag);
-	if (ascending_sort(td.a))
+	if (ascending_sort(td.a->list))
 	{
 		init_chunk(&td);
-		if (td.len_a == 3)
+		if (td.a->len == 3)
 			sorting_3(&td);
-		else if (td.len_a == 5)
+		else if (td.a->len == 5)
 			sorting_5(&td);
 		else
 		{
-			while (ascending_sort(td.a))
+			while (ascending_sort(td.a->list))
 				sorting_list(&td);
-			while (td.len_b > 0)
+			while (td.b->len > 0)
 				rev_sorting_list(&td);
 		}
 		// if (!descending_sort(td.a))
@@ -90,8 +90,8 @@ int	main(int ac, char **ag)
 	// printf("asc_a : %d | asc_b : %d | desc_a : %d | desc_b : %d\n", ascending_sort(td.a), ascending_sort(td.b), descending_sort(td.a), descending_sort(td.b));
 	// printf("------------------------------------------------------------------------------------------------\n");
 	// printf("f_hold : %d | s_hold : %d\n", td.first_hold, td.second_hold);
-	clear_element(&td.a, free);
-	clear_element(&td.b, free);
+	clear_element(&td.a->list, free);
+	clear_element(&td.b->list, free);
 	ft_lstclear(&td.list, free);
 	return (0);
 }

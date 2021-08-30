@@ -6,7 +6,7 @@
 /*   By: obelair <obelair@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/06 15:42:08 by obelair           #+#    #+#             */
-/*   Updated: 2021/08/28 21:46:37 by obelair          ###   ########.fr       */
+/*   Updated: 2021/08/30 15:55:20 by obelair          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ static void	index_chunk(t_data *td)
 	int	nb;
 	int	rest;
 
-	nb = td->len_a / td->chunk;
-	rest = td->len_a % td->chunk;
+	nb = td->a->len / td->chunk;
+	rest = td->a->len % td->chunk;
 	td->ind_chunk[0].start = 0;
 	td->ind_chunk[0].end = nb - 1;
 	if (rest)
@@ -45,13 +45,11 @@ void	init_chunk(t_data *td)
 {
 	float	chunk;
 
-	chunk = ft_sqrt(td->len_a) / 2;
+	chunk = ft_sqrt(td->a->len) / 2;
 	if (chunk - (int)chunk > 0)
 		td->chunk = (int)chunk + 1;
 	else
 		td->chunk = (int)chunk;
-	// if (td->chunk < 2)
-	// 	td->chunk = 2;
 	td->ind_chunk = ft_calloc(td->chunk, sizeof(t_chunk));
 	if (ft_lstadd_void(&td->list, td->ind_chunk, 0))
 		ft_exit(td, 3, "");

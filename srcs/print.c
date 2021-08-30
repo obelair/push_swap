@@ -6,7 +6,7 @@
 /*   By: obelair <obelair@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/27 06:10:42 by obelair           #+#    #+#             */
-/*   Updated: 2021/08/28 19:17:43 by obelair          ###   ########.fr       */
+/*   Updated: 2021/08/30 03:41:31 by obelair          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,17 @@
 
 void	print_stack(t_data *td)
 {
-	t_stack	*cur_a;
-	t_stack	*cur_b;
+	t_nbr	*cur_a;
+	t_nbr	*cur_b;
 	int		i;
 
 	i = 0;
 	printf("================================================================================================\n");
 	printf("\tNb\t|\tInd\t|\tA.v\t|\tA.i\t|\tB.v\t|\tB.i\n");
 	printf("================================================================================================\n");
-	cur_a = td->a;
-	cur_b = td->b;
-	while (i < (td->len_a + td->len_b))
+	cur_a = td->a->list;
+	cur_b = td->b->list;
+	while (i < (td->a->len + td->b->len))
 	{
 		printf("\t%d\t|\t%d", td->nb[i], td->ind[i]);
 		if (cur_a && cur_b)

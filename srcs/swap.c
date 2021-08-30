@@ -6,7 +6,7 @@
 /*   By: obelair <obelair@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/02 18:32:42 by obelair           #+#    #+#             */
-/*   Updated: 2021/08/29 19:04:41 by obelair          ###   ########.fr       */
+/*   Updated: 2021/08/30 03:21:28 by obelair          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 void	sa(t_data *td, int ss)
 {
-	t_stack	*tmp;
+	t_nbr	*tmp;
 
-	if (td->len_a > 1)
+	if (td->a->len > 1)
 	{
-		tmp = td->a;
-		td->a = td->a->next;
-		tmp->next = td->a->next;
-		td->a->next = tmp;
+		tmp = td->a->list;
+		td->a->list = td->a->list->next;
+		tmp->next = td->a->list->next;
+		td->a->list->next = tmp;
 		if (!ss)
 		{
 			printf("sa\n");
@@ -32,14 +32,14 @@ void	sa(t_data *td, int ss)
 
 void	sb(t_data *td, int ss)
 {
-	t_stack	*tmp;
+	t_nbr	*tmp;
 
-	if (td->len_b > 1)
+	if (td->b->len > 1)
 	{
-		tmp = td->b;
-		td->b = td->b->next;
-		tmp->next = td->b->next;
-		td->b->next = tmp;
+		tmp = td->b->list;
+		td->b->list = td->b->list->next;
+		tmp->next = td->b->list->next;
+		td->b->list->next = tmp;
 		if (!ss)
 		{
 			printf("sb\n");

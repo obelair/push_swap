@@ -6,7 +6,7 @@
 /*   By: obelair <obelair@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/02 18:32:25 by obelair           #+#    #+#             */
-/*   Updated: 2021/08/29 19:04:41 by obelair          ###   ########.fr       */
+/*   Updated: 2021/08/30 15:03:54 by obelair          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 void	ra(t_data *td, int rr)
 {
-	t_stack	*tmp;
+	t_nbr	*tmp;
 
-	tmp = td->a;
-	td->a = td->a->next;
+	tmp = td->a->list;
+	td->a->list = td->a->list->next;
 	tmp->next = NULL;
-	add_element(&td->a, tmp, 1);
+	add_element(&td->a->list, tmp, 1);
 	if (!rr)
 	{
 		printf("ra\n");
@@ -29,12 +29,12 @@ void	ra(t_data *td, int rr)
 
 void	rb(t_data *td, int rr)
 {
-	t_stack	*tmp;
+	t_nbr	*tmp;
 
-	tmp = td->b;
-	td->b = td->b->next;
+	tmp = td->b->list;
+	td->b->list = td->b->list->next;
 	tmp->next = NULL;
-	add_element(&td->b, tmp, 1);
+	add_element(&td->b->list, tmp, 1);
 	if (!rr)
 	{
 		printf("rb\n");
@@ -42,10 +42,10 @@ void	rb(t_data *td, int rr)
 	}
 }
 
-void	rr(t_data *td)
+void	rr(t_data *td, int rr)
 {
-	ra(td, 1);
-	rb(td, 1);
+	ra(td, rr);
+	rb(td, rr);
 	printf("rr\n");
 	// print_stack(td);
 }

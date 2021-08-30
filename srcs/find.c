@@ -6,74 +6,70 @@
 /*   By: obelair <obelair@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/06 22:02:52 by obelair           #+#    #+#             */
-/*   Updated: 2021/08/28 18:21:22 by obelair          ###   ########.fr       */
+/*   Updated: 2021/08/30 15:38:07 by obelair          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	find_first(t_data *td, int inter)
+void	find_hold(t_data *td, int inter, int first)
 {
-	t_stack	*cur;
+	t_nbr	*cur;
 
-	cur = td->a;
-	td->first_hold = -1;
-	while (td->a && td->first_hold == -1)
+	cur = td->a->list;
+	if (first)
 	{
-		if (td->ind_chunk[inter].start <= td->a->index
-			&& td->a->index <= td->ind_chunk[inter].end)
-			td->first_hold = td->a->index;
-		td->a = td->a->next;
+		td->first_hold = -1;
+		while (cur && td->first_hold == -1)
+		{
+			if (td->ind_chunk[inter].start <= cur->index
+				&& cur->index <= td->ind_chunk[inter].end)
+				td->first_hold = cur->index;
+			cur = cur->next;
+		}
 	}
-	td->a = cur;
-}
-
-void	find_second(t_data *td, int inter)
-{
-	t_stack	*cur;
-
-	cur = td->a;
-	td->second_hold = -1;
-	while (cur)
+	else
 	{
-		if (td->ind_chunk[inter].start <= cur->index
-			&& cur->index <= td->ind_chunk[inter].end)
-			td->second_hold = cur->index;
-		cur = cur->next;
+		td->second_hold = -1;
+		while (cur)
+		{
+			if (td->ind_chunk[inter].start <= cur->index
+				&& cur->index <= td->ind_chunk[inter].end)
+				td->second_hold = cur->index;
+			cur = cur->next;
+		}
 	}
 }
 
-void	find_max(t_stack *stack, int *ind)
+void	find_min_max(t_nbr *stack, int *ind, int min)
 {
-	t_stack	*cur;
+	t_nbr	*cur;
 
 	cur = stack;
 	*ind = cur->index;
-	while (cur)
+	if (!min)
 	{
-		if (*ind < cur->index)
-			*ind = cur->index;
-		cur = cur->next;
+		while (cur)
+		{
+			if (*ind < cur->index)
+				*ind = cur->index;
+			cur = cur->next;
+		}
+	}
+	else
+	{
+		while (cur)
+		{
+			if (*ind > cur->index)
+				*ind = cur->index;
+			cur = cur->next;
+		}
 	}
 }
 
-void	find_min(t_stack *stack, int *ind)
+int	find_rot(t_nbr *stack, int size, int ind)
 {
-	t_stack	*cur;
-
-	cur = stack;
-	*ind = cur->index;
-	while (cur)
-	{
-		if (*ind > cur->index)
-			*ind = cur->index;
-		cur = cur->next;
-	}
-}
-
-int	find_rot(t_stack *stack, int size, int ind)
-{
-	t_stack	*cur;
+	t_nbr	*cur;
 	int		i;
 
 	cur = stack;
@@ -91,9 +87,9 @@ int	find_rot(t_stack *stack, int size, int ind)
 int	count_element(t_data *td, int inter)
 {
 	int		i;
-	t_stack	*cur;
+	t_nbr	*cur;
 
-	cur = td->a;
+	cur = td->a->list;
 	i = 0;
 	while (cur)
 	{
