@@ -6,7 +6,7 @@
 /*   By: obelair <obelair@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/31 21:54:31 by obelair           #+#    #+#             */
-/*   Updated: 2021/08/30 03:44:32 by obelair          ###   ########.fr       */
+/*   Updated: 2021/09/01 12:29:14 by obelair          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ void	init_stack(t_data *td, int size)
 	i = 0;
 	while (i < size)
 	{
-		if (add_element(&td->a->list, new_element(td->nb[i], td->ind[i]), 1))
+		if (add_element(&td->a->lst, new_element(td->nb[i], td->ind[i]), 1))
 			ft_exit(td, 3, "");
 		i++;
 	}
-	td->a->len = size_element(td->a->list);
+	td->a->len = size_element(td->a->lst);
 }
 
 void	init_data(t_data *td, int ac)
@@ -42,4 +42,6 @@ void	init_data(t_data *td, int ac)
 	td->ind = ft_calloc(ac - 1, sizeof(int));
 	if (ft_lstadd_void(&td->list, td->ind, 0))
 		ft_exit(td, 3, NULL);
+	td->bit = 0;
+	td->max_bit = 0;
 }

@@ -6,7 +6,7 @@
 /*   By: obelair <obelair@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/02 18:32:42 by obelair           #+#    #+#             */
-/*   Updated: 2021/08/30 03:21:28 by obelair          ###   ########.fr       */
+/*   Updated: 2021/09/01 12:35:17 by obelair          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ void	sa(t_data *td, int ss)
 
 	if (td->a->len > 1)
 	{
-		tmp = td->a->list;
-		td->a->list = td->a->list->next;
-		tmp->next = td->a->list->next;
-		td->a->list->next = tmp;
+		tmp = td->a->lst;
+		td->a->lst = td->a->lst->next;
+		tmp->next = td->a->lst->next;
+		td->a->lst->next = tmp;
 		if (!ss)
 		{
 			printf("sa\n");
@@ -36,10 +36,10 @@ void	sb(t_data *td, int ss)
 
 	if (td->b->len > 1)
 	{
-		tmp = td->b->list;
-		td->b->list = td->b->list->next;
-		tmp->next = td->b->list->next;
-		td->b->list->next = tmp;
+		tmp = td->b->lst;
+		td->b->lst = td->b->lst->next;
+		tmp->next = td->b->lst->next;
+		td->b->lst->next = tmp;
 		if (!ss)
 		{
 			printf("sb\n");

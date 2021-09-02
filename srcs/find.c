@@ -6,7 +6,7 @@
 /*   By: obelair <obelair@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/06 22:02:52 by obelair           #+#    #+#             */
-/*   Updated: 2021/08/30 15:38:07 by obelair          ###   ########.fr       */
+/*   Updated: 2021/08/30 19:44:34 by obelair          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,72 +16,46 @@ void	find_hold(t_data *td, int inter, int first)
 {
 	t_nbr	*cur;
 
-	cur = td->a->list;
+	cur = td->a->lst;
 	if (first)
 	{
-		td->first_hold = -1;
-		while (cur && td->first_hold == -1)
+		td->f_hold = -1;
+		while (cur && td->f_hold == -1)
 		{
-			if (td->ind_chunk[inter].start <= cur->index
-				&& cur->index <= td->ind_chunk[inter].end)
-				td->first_hold = cur->index;
+			if (td->ind_chunk[inter].start <= cur->ind
+				&& cur->ind <= td->ind_chunk[inter].end)
+				td->f_hold = cur->ind;
 			cur = cur->next;
 		}
 	}
 	else
 	{
-		td->second_hold = -1;
+		td->s_hold = -1;
 		while (cur)
 		{
-			if (td->ind_chunk[inter].start <= cur->index
-				&& cur->index <= td->ind_chunk[inter].end)
-				td->second_hold = cur->index;
+			if (td->ind_chunk[inter].start <= cur->ind
+				&& cur->ind <= td->ind_chunk[inter].end)
+				td->s_hold = cur->ind;
 			cur = cur->next;
 		}
 	}
 }
 
-void	find_min_max(t_nbr *stack, int *ind, int min)
+void	find_min_max(t_nbr *stack, int *min, int *max)
 {
 	t_nbr	*cur;
 
 	cur = stack;
-	*ind = cur->index;
-	if (!min)
+	*min = cur->ind;
+	*max = cur->ind;
+	while (cur)
 	{
-		while (cur)
-		{
-			if (*ind < cur->index)
-				*ind = cur->index;
-			cur = cur->next;
-		}
-	}
-	else
-	{
-		while (cur)
-		{
-			if (*ind > cur->index)
-				*ind = cur->index;
-			cur = cur->next;
-		}
-	}
-}
-
-int	find_rot(t_nbr *stack, int size, int ind)
-{
-	t_nbr	*cur;
-	int		i;
-
-	cur = stack;
-	i = 0;
-	while (cur->index != ind)
-	{
-		i++;
+		if (*min > cur->ind)
+			*min = cur->ind;
+		if (*max < cur->ind)
+			*max = cur->ind;
 		cur = cur->next;
 	}
-	if (i > size * 0.5)
-		return (i - size);
-	return (i);
 }
 
 int	count_element(t_data *td, int inter)
@@ -89,12 +63,12 @@ int	count_element(t_data *td, int inter)
 	int		i;
 	t_nbr	*cur;
 
-	cur = td->a->list;
+	cur = td->a->lst;
 	i = 0;
 	while (cur)
 	{
-		if (td->ind_chunk[inter].start <= cur->index
-			&& cur->index <= td->ind_chunk[inter].end)
+		if (td->ind_chunk[inter].start <= cur->ind
+			&& cur->ind <= td->ind_chunk[inter].end)
 			i++;
 		cur = cur->next;
 	}

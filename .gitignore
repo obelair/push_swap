@@ -54,3 +54,4 @@ dkms.conf
 complexity
 .DS_Store
 push_swap
+*.py

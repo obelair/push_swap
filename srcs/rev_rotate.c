@@ -6,7 +6,7 @@
 /*   By: obelair <obelair@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/02 18:32:08 by obelair           #+#    #+#             */
-/*   Updated: 2021/08/30 15:03:22 by obelair          ###   ########.fr       */
+/*   Updated: 2021/09/01 12:35:17 by obelair          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,12 @@ void	rra(t_data *td, int rrr)
 	t_nbr	*tmp;
 	t_nbr	*cur;
 
-	tmp = last_element(td->a->list);
-	cur = td->a->list;
+	tmp = last_element(td->a->lst);
+	cur = td->a->lst;
 	while (cur->next != tmp)
 		cur = cur->next;
 	cur->next = NULL;
-	add_element(&td->a->list, tmp, 0);
+	add_element(&td->a->lst, tmp, 0);
 	if (!rrr)
 	{
 		printf("rra\n");
@@ -35,12 +35,12 @@ void	rrb(t_data *td, int rrr)
 	t_nbr	*tmp;
 	t_nbr	*cur;
 
-	tmp = last_element(td->b->list);
-	cur = td->b->list;
+	tmp = last_element(td->b->lst);
+	cur = td->b->lst;
 	while (cur->next != tmp)
 		cur = cur->next;
 	cur->next = NULL;
-	add_element(&td->b->list, tmp, 0);
+	add_element(&td->b->lst, tmp, 0);
 	if (!rrr)
 	{
 		printf("rrb\n");

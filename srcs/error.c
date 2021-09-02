@@ -6,7 +6,7 @@
 /*   By: obelair <obelair@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/31 19:39:04 by obelair           #+#    #+#             */
-/*   Updated: 2021/08/30 14:34:24 by obelair          ###   ########.fr       */
+/*   Updated: 2021/08/30 19:12:05 by obelair          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ void	write_error(int err, char *str)
 void	ft_exit(t_data *td, int err, char *str)
 {
 	write_error(err, str);
-	clear_element(&td->a->list, free);
-	clear_element(&td->b->list, free);
+	clear_element(&td->a->lst, free);
+	clear_element(&td->b->lst, free);
 	ft_lstclear(&td->list, free);
 	exit(EXIT_FAILURE);
 }
