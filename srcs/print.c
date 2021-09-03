@@ -6,11 +6,20 @@
 /*   By: obelair <obelair@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/27 06:10:42 by obelair           #+#    #+#             */
-/*   Updated: 2021/08/30 19:09:25 by obelair          ###   ########.fr       */
+/*   Updated: 2021/09/03 11:22:22 by obelair          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	instr_print(t_instr *instr)
+{
+	while (instr)
+	{
+		printf("%s\n", instr->instr);
+		instr = instr->next;
+	}
+}
 
 void	print_stack(t_data *td)
 {
