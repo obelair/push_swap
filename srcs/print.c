@@ -6,7 +6,7 @@
 /*   By: obelair <obelair@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/27 06:10:42 by obelair           #+#    #+#             */
-/*   Updated: 2021/09/03 11:22:22 by obelair          ###   ########lyon.fr   */
+/*   Updated: 2021/09/04 20:47:53 by obelair          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	instr_print(t_instr *instr)
 {
 	while (instr)
 	{
-		printf("%s\n", instr->instr);
+		printf("%s", instr->op);
 		instr = instr->next;
 	}
 }

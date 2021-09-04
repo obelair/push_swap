@@ -6,7 +6,7 @@
 /*   By: obelair <obelair@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/31 16:31:13 by obelair           #+#    #+#             */
-/*   Updated: 2021/09/03 13:59:30 by obelair          ###   ########lyon.fr   */
+/*   Updated: 2021/09/04 22:47:45 by obelair          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ typedef struct s_instruction
 	struct s_instruction	*next;
 }	t_instr;
 
-t_instr	*new_instr(int instr);
+t_instr	*new_instr(char *instr);
 t_instr	*last_instr(t_instr *list);
 int		add_instr(t_instr **list, t_instr *new, int back);
 void	del_one(t_instr *elem, void (*del)(void *));
@@ -106,6 +106,10 @@ void	cmp_top_stack(t_data *td);
 void	parsing_arg(t_data *td, int ac, char **ag);
 
 void	radix(t_data *td);
+
+void	purge_instr(t_instr **list);
+
+void	instr_print(t_instr *instr);
 
 void	pb(t_data *td);
 void	pa(t_data *td);

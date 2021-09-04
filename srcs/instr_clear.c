@@ -6,7 +6,7 @@
 /*   By: obelair <obelair@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 11:17:37 by obelair           #+#    #+#             */
-/*   Updated: 2021/09/03 13:49:17 by obelair          ###   ########lyon.fr   */
+/*   Updated: 2021/09/04 23:00:21 by obelair          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,15 @@
 
 void	del_one(t_instr *elem, void (*del)(void *))
 {
+	t_instr	*tmp;
+
 	if (!elem)
 		return ;
-	(elem->next)->previous = elem->previous;
-	(elem->previous)->next = elem->next;
-	del(elem);
+	tmp = elem;
+	elem = elem->next;
+	(tmp->next)->previous = tmp->previous;
+	(tmp->previous)->next = tmp->next;
+	del(tmp);
 }
 
 void	clear_instr(t_instr **list, void (*del)(void *))

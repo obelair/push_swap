@@ -6,7 +6,7 @@
 /*   By: obelair <obelair@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/31 22:10:43 by obelair           #+#    #+#             */
-/*   Updated: 2021/09/01 12:36:26 by obelair          ###   ########.fr       */
+/*   Updated: 2021/09/04 16:55:49 by obelair          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ void	radix(t_data *td)
 	i = td->a->len;
 	while (i > 0 && ascending_sort(td->a->lst))
 	{
-		// cmp_top_stack(td);
 		if ((td->a->lst->ind >> td->bit) & 1)
 			ra(td, 0);
 		else
