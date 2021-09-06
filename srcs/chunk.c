@@ -6,11 +6,28 @@
 /*   By: obelair <obelair@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/06 15:42:08 by obelair           #+#    #+#             */
-/*   Updated: 2021/08/31 17:19:43 by obelair          ###   ########.fr       */
+/*   Updated: 2021/09/06 16:46:07 by obelair          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int	nb_into_chunk(t_data *td, int inter)
+{
+	int		i;
+	t_nbr	*cur;
+
+	cur = td->a->lst;
+	i = 0;
+	while (cur)
+	{
+		if (td->ind_chunk[inter].start <= cur->ind
+			&& cur->ind <= td->ind_chunk[inter].end)
+			i++;
+		cur = cur->next;
+	}
+	return (i);
+}
 
 static void	index_chunk(t_data *td)
 {

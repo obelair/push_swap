@@ -6,13 +6,13 @@
 /*   By: obelair <obelair@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/31 21:47:12 by obelair           #+#    #+#             */
-/*   Updated: 2021/09/03 07:50:58 by obelair          ###   ########lyon.fr   */
+/*   Updated: 2021/09/06 16:54:06 by obelair          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	find_ind(t_data *td, int size)
+static void	set_ind(t_data *td, int size)
 {
 	int	i;
 
@@ -48,7 +48,7 @@ void	parsing_arg(t_data *td, int ac, char **ag)
 			ft_exit(td, 4, ag[i]);
 		if (ft_nbishere(td->nb, td->nb[i - 1], i - 1))
 			ft_exit(td, 2, ag[i]);
-		find_ind(td, i - 1);
+		set_ind(td, i - 1);
 		i++;
 	}
 	init_stack(td, ac - 1);

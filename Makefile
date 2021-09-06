@@ -26,7 +26,7 @@ PATH_OBJS	=	objs
 
 CC			=	gcc
 RENAME		=	-o ${NAME}
-CFLAGS		=	-Wall -Werror -Wextra -g3 -fsanitize=address
+CFLAGS		=	-Wall -Werror -Wextra -g3 #-fsanitize=address#
 INCS		=	-I${PATH_HEADERS} -I${PATH_LIBFT}/${PATH_HEADERS}
 LIBS		=	${PATH_LIBFT}/libft.a
 RM			=	rm -rf
@@ -34,7 +34,7 @@ RM			=	rm -rf
 # === Sources === #
 
 SRCS		=	${addprefix ${PATH_SRCS}/, main.c error.c parsing.c init.c push.c swap.c rotate.c rev_rotate.c \
-					chunk.c sort.c find.c comp.c use.c index.c algo.c\
+					chunk.c sort.c find.c comp.c use.c insert.c algo.c\
 					radix.c purge.c\
 					instr_new.c instr_add.c instr_clear.c\
 					stack_new.c stack_last.c stack_size.c stack_clear.c stack_add.c\

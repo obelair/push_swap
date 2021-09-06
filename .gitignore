@@ -55,3 +55,4 @@ complexity
 .DS_Store
 push_swap
 *.py
+checker_*

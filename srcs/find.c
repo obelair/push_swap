@@ -6,7 +6,7 @@
 /*   By: obelair <obelair@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/06 22:02:52 by obelair           #+#    #+#             */
-/*   Updated: 2021/08/30 19:44:34 by obelair          ###   ########.fr       */
+/*   Updated: 2021/09/06 16:47:26 by obelair          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,19 +58,19 @@ void	find_min_max(t_nbr *stack, int *min, int *max)
 	}
 }
 
-int	count_element(t_data *td, int inter)
+int	find_ind(t_nbr *stack, int size, int ind)
 {
-	int		i;
 	t_nbr	*cur;
+	int		i;
 
-	cur = td->a->lst;
+	cur = stack;
 	i = 0;
-	while (cur)
+	while (cur->ind != ind)
 	{
-		if (td->ind_chunk[inter].start <= cur->ind
-			&& cur->ind <= td->ind_chunk[inter].end)
-			i++;
+		i++;
 		cur = cur->next;
 	}
+	if (i > size * 0.5)
+		return (i - size);
 	return (i);
 }

@@ -6,7 +6,7 @@
 /*   By: obelair <obelair@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/31 16:31:13 by obelair           #+#    #+#             */
-/*   Updated: 2021/09/04 22:47:45 by obelair          ###   ########.fr       */
+/*   Updated: 2021/09/06 17:01:15 by obelair          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,19 +29,6 @@ int		add_element(t_nbr **list, t_nbr *new, int back);
 void	clear_element(t_nbr **list, void (*del)(void *));
 int		size_element(t_nbr *list);
 
-typedef struct s_instruction
-{
-	char					*op;
-	struct s_instruction	*previous;
-	struct s_instruction	*next;
-}	t_instr;
-
-t_instr	*new_instr(char *instr);
-t_instr	*last_instr(t_instr *list);
-int		add_instr(t_instr **list, t_instr *new, int back);
-void	del_one(t_instr *elem, void (*del)(void *));
-void	clear_instr(t_instr **list, void (*del)(void *));
-
 typedef struct s_stack
 {
 	int		len;
@@ -58,16 +45,13 @@ typedef struct s_data
 {
 	int		*nb;
 	int		*ind;
-	int		nb_element;
 	int		chunk;
 	int		bit;
-	int		max_bit;
 	t_chunk	*ind_chunk;
 	int		f_hold;
 	int		s_hold;
 	t_stack	*a;
 	t_stack	*b;
-	t_instr	*instr;
 	t_list	*list;
 }	t_data;
 
@@ -77,23 +61,20 @@ void	init_chunk(t_data *td);
 void	init_data(t_data *td, int ac);
 void	init_stack(t_data *td, int size);
 
-int		true_ascending_sort(t_nbr *list);
 int		ascending_sort(t_nbr *list);
-int		true_descending_sort(t_nbr *list);
 int		descending_sort(t_nbr *list);
 
-void	sorting_3(t_data *td);
-void	sorting_5(t_data *td);
-void	sorting_list(t_data *td);
-void	rev_sorting_list(t_data *td);
+void	algo_3(t_data *td);
+void	algo_5(t_data *td);
+void	algo_chunk_start(t_data *td);
+void	algo_chunk_end(t_data *td);
 
 void	find_hold(t_data *td, int inter, int first);
 void	find_min_max(t_nbr *stack, int *min, int *max);
-int		count_element(t_data *td, int inter);
+int		nb_into_chunk(t_data *td, int inter);
 
-int		ind_element(t_nbr *stack, int size, int ind);
+int		find_ind(t_nbr *stack, int size, int ind);
 int		insert_into_a(t_data *td);
-int		insert_into_b(t_data *td);
 
 void	use_r_or_rr(t_data *td, int i, void (*r)(t_data *, int), \
 	void (*rr)(t_data *, int));
@@ -106,10 +87,6 @@ void	cmp_top_stack(t_data *td);
 void	parsing_arg(t_data *td, int ac, char **ag);
 
 void	radix(t_data *td);
-
-void	purge_instr(t_instr **list);
-
-void	instr_print(t_instr *instr);
 
 void	pb(t_data *td);
 void	pa(t_data *td);
@@ -125,9 +102,5 @@ void	rr(t_data *td, int rr);
 void	rra(t_data *td, int rrr);
 void	rrb(t_data *td, int rrr);
 void	rrr(t_data *td, int rrr);
-
-/* Don't keep */
-
-void	print_stack(t_data *td);
 
 #endif

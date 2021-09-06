@@ -6,7 +6,7 @@
 /*   By: obelair <obelair@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/31 21:54:31 by obelair           #+#    #+#             */
-/*   Updated: 2021/09/04 21:26:43 by obelair          ###   ########.fr       */
+/*   Updated: 2021/09/06 17:01:23 by obelair          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ void	init_stack(t_data *td, int size)
 		i++;
 	}
 	td->a->len = size_element(td->a->lst);
-	td->nb_element = td->a->len;
 }
 
 void	init_data(t_data *td, int ac)
@@ -36,11 +35,6 @@ void	init_data(t_data *td, int ac)
 	td->b = ft_calloc(1, sizeof(t_stack));
 	if (ft_lstadd_void(&td->list, td->b, 0))
 		ft_exit(td, 3, NULL);
-	td->instr = NULL;
-	// td->instr = ft_calloc(1, sizeof(t_instr));
-	// if (ft_lstadd_void(&td->list, td->instr, 0))
-	// if (!td->instr)
-	// 	ft_exit(td, 3, NULL);
 	td->ind_chunk = NULL;
 	td->nb = ft_calloc(ac - 1, sizeof(int));
 	if (ft_lstadd_void(&td->list, td->nb, 0))
@@ -49,5 +43,4 @@ void	init_data(t_data *td, int ac)
 	if (ft_lstadd_void(&td->list, td->ind, 0))
 		ft_exit(td, 3, NULL);
 	td->bit = 0;
-	td->max_bit = 0;
 }

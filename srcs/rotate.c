@@ -6,7 +6,7 @@
 /*   By: obelair <obelair@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/02 18:32:25 by obelair           #+#    #+#             */
-/*   Updated: 2021/09/04 22:29:41 by obelair          ###   ########.fr       */
+/*   Updated: 2021/09/06 16:50:25 by obelair          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,7 @@ void	ra(t_data *td, int rr)
 	tmp->next = NULL;
 	add_element(&td->a->lst, tmp, 1);
 	if (!rr)
-	{
-		add_instr(&td->instr, new_instr("ra\n"), 1);
-		// printf("ra\n");
-		// print_stack(td);
-	}
+		printf("ra\n");
 }
 
 void	rb(t_data *td, int rr)
@@ -37,18 +33,12 @@ void	rb(t_data *td, int rr)
 	tmp->next = NULL;
 	add_element(&td->b->lst, tmp, 1);
 	if (!rr)
-	{
-		add_instr(&td->instr, new_instr("rb\n"), 1);
-		// printf("rb\n");
-		// print_stack(td);
-	}
+		printf("rb\n");
 }
 
 void	rr(t_data *td, int rr)
 {
 	ra(td, rr);
 	rb(td, rr);
-	add_instr(&td->instr, new_instr("rr\n"), 1);
-	// printf("rr\n");
-	// print_stack(td);
+	printf("rr\n");
 }

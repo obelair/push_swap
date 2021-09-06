@@ -6,7 +6,7 @@
 /*   By: obelair <obelair@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/31 16:30:00 by obelair           #+#    #+#             */
-/*   Updated: 2021/09/04 22:49:28 by obelair          ###   ########.fr       */
+/*   Updated: 2021/09/06 17:00:49 by obelair          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,31 @@ int	end_prog(t_data *td)
 {
 	clear_element(&td->a->lst, free);
 	clear_element(&td->b->lst, free);
-	clear_instr(&td->instr, free);
 	ft_lstclear(&td->list, free);
 	return (EXIT_SUCCESS);
+}
+
+void	low_sort(t_data *td)
+{
+	if (td->a->len == 3)
+		algo_3(td);
+	else if (td->a->len == 5)
+	{
+		algo_5(td);
+		while (td->b->len)
+		{
+			pa(td);
+			if (ascending_sort(td->a->lst))
+				ra(td, 0);
+		}
+	}
+	else if (td->a->len <= 100)
+	{
+		while (ascending_sort(td->a->lst))
+			algo_chunk_start(td);
+		while (td->b->len)
+			algo_chunk_end(td);
+	}
 }
 
 int	main(int ac, char **ag)
@@ -26,35 +48,14 @@ int	main(int ac, char **ag)
 	t_data	td;
 
 	parsing_arg(&td, ac, ag);
-	if (true_ascending_sort(td.a->lst))
+	if (ascending_sort(td.a->lst))
 	{
 		init_chunk(&td);
-		if (td.a->len == 3)
-			sorting_3(&td);
-		else if (td.a->len == 5)
-		{
-			sorting_5(&td);
-			while (td.b->len)
-			{
-				pa(&td);
-				if(ascending_sort(td.a->lst))
-					ra(&td, 0);
-			}
-		}
-		else if (td.a->len <= 100)
-		{
-			while (true_ascending_sort(td.a->lst))
-				sorting_list(&td);
-			while (td.b->len)
-				rev_sorting_list(&td);
-		}
+		if (td.a->len <= 100)
+			low_sort(&td);
 		else
-		{
-			while (true_ascending_sort(td.a->lst))
+			while (ascending_sort(td.a->lst))
 				radix(&td);
-		}
 	}
-	purge_instr(&td.instr);
-	instr_print(td.instr);
 	return (end_prog(&td));
 }

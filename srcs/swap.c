@@ -6,7 +6,7 @@
 /*   By: obelair <obelair@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/02 18:32:42 by obelair           #+#    #+#             */
-/*   Updated: 2021/09/04 22:29:41 by obelair          ###   ########.fr       */
+/*   Updated: 2021/09/06 16:49:18 by obelair          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,7 @@ void	sa(t_data *td, int ss)
 		tmp->next = td->a->lst->next;
 		td->a->lst->next = tmp;
 		if (!ss)
-		{
-			add_instr(&td->instr, new_instr("sa\n"), 1);
-			// printf("sa\n");
-			// print_stack(td);
-		}
+			printf("sa\n");
 	}
 }
 
@@ -42,11 +38,7 @@ void	sb(t_data *td, int ss)
 		tmp->next = td->b->lst->next;
 		td->b->lst->next = tmp;
 		if (!ss)
-		{
-			add_instr(&td->instr, new_instr("sb\n"), 1);
-			// printf("sb\n");
-			// print_stack(td);
-		}
+			printf("sb\n");
 	}
 }
 
@@ -54,7 +46,5 @@ void	ss(t_data *td)
 {
 	sa(td, 1);
 	sb(td, 1);
-	add_instr(&td->instr, new_instr("ss\n"), 1);
-	// printf("ss\n");
-	// print_stack(td);
+	printf("ss\n");
 }
