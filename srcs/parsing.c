@@ -6,7 +6,7 @@
 /*   By: obelair <obelair@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/31 21:47:12 by obelair           #+#    #+#             */
-/*   Updated: 2021/09/06 16:54:06 by obelair          ###   ########lyon.fr   */
+/*   Updated: 2021/09/09 10:54:56 by obelair          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,21 +33,21 @@ static void	set_ind(t_data *td, int size)
 	}
 }
 
-void	parsing_arg(t_data *td, int ac, char **ag)
+void	parsing_arg(t_data *td, int ac, char **av)
 {
 	int	i;
 
 	init_data(td, ac);
 	i = 1;
-	while (ag[i])
+	while (av[i])
 	{
-		if (ft_strisdigit(ag[i]))
-			ft_exit(td, 1, ag[i]);
-		td->nb[i - 1] = ft_atoi(ag[i]);
-		if ((int)ft_strlen(ag[i]) != ft_intblen(td->nb[i - 1], 10))
-			ft_exit(td, 4, ag[i]);
+		if (ft_strisdigit(av[i]))
+			ft_exit(td, 1, av[i]);
+		td->nb[i - 1] = ft_atoi(av[i]);
+		if ((int)ft_strlen(av[i]) != ft_intblen(td->nb[i - 1], 10))
+			ft_exit(td, 4, av[i]);
 		if (ft_nbishere(td->nb, td->nb[i - 1], i - 1))
-			ft_exit(td, 2, ag[i]);
+			ft_exit(td, 2, av[i]);
 		set_ind(td, i - 1);
 		i++;
 	}

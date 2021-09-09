@@ -6,13 +6,13 @@
 /*   By: obelair <obelair@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/02 18:32:50 by obelair           #+#    #+#             */
-/*   Updated: 2021/09/06 16:49:35 by obelair          ###   ########lyon.fr   */
+/*   Updated: 2021/09/09 11:35:10 by obelair          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	pa(t_data *td)
+void	pa(t_data *td, int print)
 {
 	t_nbr	*tmp;
 
@@ -22,10 +22,11 @@ void	pa(t_data *td)
 	add_element(&td->a->lst, tmp, 0);
 	td->a->len = size_element(td->a->lst);
 	td->b->len = size_element(td->b->lst);
-	printf("pa\n");
+	if (print)
+		printf("pa\n");
 }
 
-void	pb(t_data *td)
+void	pb(t_data *td, int print)
 {
 	t_nbr	*tmp;
 
@@ -35,5 +36,6 @@ void	pb(t_data *td)
 	add_element(&td->b->lst, tmp, 0);
 	td->a->len = size_element(td->a->lst);
 	td->b->len = size_element(td->b->lst);
-	printf("pb\n");
+	if (print)
+		printf("pb\n");
 }

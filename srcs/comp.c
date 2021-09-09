@@ -6,7 +6,7 @@
 /*   By: obelair <obelair@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/08 10:06:58 by obelair           #+#    #+#             */
-/*   Updated: 2021/09/06 16:37:03 by obelair          ###   ########lyon.fr   */
+/*   Updated: 2021/09/09 11:40:25 by obelair          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,17 +84,17 @@ void	cmp_top_stack(t_data *td)
 			&& (td->b->lst->ind < (td->b->lst->next)->ind
 				&& (td->b->lst->ind + 1 == (td->b->lst->next)->ind
 					|| cmp_same_chunk(td, td->b->lst))))
-			ss(td);
+			ss(td, 1, 1);
 		if (td->a->lst->ind > (td->a->lst->next)->ind
 			&& (td->a->lst->ind - 1 == (td->a->lst->next)->ind
 				|| cmp_same_chunk(td, td->a->lst)))
-			sa(td, 0);
+			sa(td, 0, 1);
 	}
 	else if (td->a->len > 1)
 	{
 		if (td->a->lst->ind > (td->a->lst->next)->ind
 			&& (td->a->lst->ind - 1 == (td->a->lst->next)->ind
 				|| cmp_same_chunk(td, td->a->lst)))
-			sa(td, 0);
+			sa(td, 0, 1);
 	}
 }

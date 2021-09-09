@@ -6,13 +6,13 @@
 /*   By: obelair <obelair@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/02 18:32:42 by obelair           #+#    #+#             */
-/*   Updated: 2021/09/06 16:49:18 by obelair          ###   ########lyon.fr   */
+/*   Updated: 2021/09/09 11:32:25 by obelair          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	sa(t_data *td, int ss)
+void	sa(t_data *td, int ss, int print)
 {
 	t_nbr	*tmp;
 
@@ -22,12 +22,12 @@ void	sa(t_data *td, int ss)
 		td->a->lst = td->a->lst->next;
 		tmp->next = td->a->lst->next;
 		td->a->lst->next = tmp;
-		if (!ss)
+		if (print && !ss)
 			printf("sa\n");
 	}
 }
 
-void	sb(t_data *td, int ss)
+void	sb(t_data *td, int ss, int print)
 {
 	t_nbr	*tmp;
 
@@ -37,14 +37,15 @@ void	sb(t_data *td, int ss)
 		td->b->lst = td->b->lst->next;
 		tmp->next = td->b->lst->next;
 		td->b->lst->next = tmp;
-		if (!ss)
+		if (print && !ss)
 			printf("sb\n");
 	}
 }
 
-void	ss(t_data *td)
+void	ss(t_data *td, int ss, int print)
 {
-	sa(td, 1);
-	sb(td, 1);
-	printf("ss\n");
+	sa(td, ss, print);
+	sb(td, ss, print);
+	if (print)
+		printf("ss\n");
 }

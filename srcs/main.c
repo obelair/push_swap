@@ -6,7 +6,7 @@
 /*   By: obelair <obelair@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/31 16:30:00 by obelair           #+#    #+#             */
-/*   Updated: 2021/09/06 17:00:49 by obelair          ###   ########lyon.fr   */
+/*   Updated: 2021/09/09 11:37:40 by obelair          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ void	low_sort(t_data *td)
 		algo_5(td);
 		while (td->b->len)
 		{
-			pa(td);
+			pa(td, 1);
 			if (ascending_sort(td->a->lst))
-				ra(td, 0);
+				ra(td, 0, 1);
 		}
 	}
 	else if (td->a->len <= 100)
@@ -43,11 +43,11 @@ void	low_sort(t_data *td)
 	}
 }
 
-int	main(int ac, char **ag)
+int	main(int ac, char **av)
 {
 	t_data	td;
 
-	parsing_arg(&td, ac, ag);
+	parsing_arg(&td, ac, av);
 	if (ascending_sort(td.a->lst))
 	{
 		init_chunk(&td);

@@ -6,7 +6,7 @@
 /*   By: obelair <obelair@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 19:49:15 by obelair           #+#    #+#             */
-/*   Updated: 2021/09/06 16:47:26 by obelair          ###   ########lyon.fr   */
+/*   Updated: 2021/09/09 11:37:26 by obelair          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ void	algo_3(t_data *td)
 	find_min_max(td->a->lst, &td->f_hold, &td->s_hold);
 	cmp_top_stack(td);
 	if ((td->a->lst->next)->ind == td->s_hold && ascending_sort(td->a->lst))
-		rra(td, 0);
+		rra(td, 0, 1);
 	else if (ascending_sort(td->a->lst))
-		ra(td, 0);
+		ra(td, 0, 1);
 	cmp_top_stack(td);
 }
 
@@ -34,10 +34,10 @@ void	algo_5(t_data *td)
 		i = find_ind(td->a->lst, td->a->len, td->s_hold);
 	asc_a_r_or_rr(td, i, ra, rra);
 	if (td->a->lst->ind == td->s_hold && !ascending_sort(td->a->lst->next))
-		ra(td, 0);
+		ra(td, 0, 1);
 	else if (ascending_sort(td->a->lst))
 	{
-		pb(td);
+		pb(td, 1);
 		if (td->f_hold == td->b->lst->ind)
 			i = find_ind(td->a->lst, td->a->len, td->s_hold);
 		else
@@ -45,7 +45,7 @@ void	algo_5(t_data *td)
 		asc_a_r_or_rr(td, i, ra, rra);
 		if (ascending_sort(td->a->lst))
 		{
-			pb(td);
+			pb(td, 1);
 			algo_3(td);
 		}
 	}
@@ -65,7 +65,7 @@ void	algo_chunk_start(t_data *td)
 	asc_a_r_or_rr(td, i, ra, rra);
 	if (ascending_sort(td->a->lst))
 	{
-		pb(td);
+		pb(td, 1);
 		if (td->a->len == 5)
 			algo_5(td);
 	}
@@ -89,7 +89,7 @@ void	algo_chunk_end(t_data *td)
 		i = insert_into_a(td);
 		use_r_or_rr(td, i, ra, rra);
 	}
-	pa(td);
+	pa(td, 1);
 	if (!td->b->len)
 	{
 		find_min_max(td->a->lst, &td->f_hold, &td->s_hold);

@@ -6,13 +6,13 @@
 /*   By: obelair <obelair@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/02 18:32:08 by obelair           #+#    #+#             */
-/*   Updated: 2021/09/06 16:49:58 by obelair          ###   ########lyon.fr   */
+/*   Updated: 2021/09/09 11:34:42 by obelair          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	rra(t_data *td, int rrr)
+void	rra(t_data *td, int rrr, int print)
 {
 	t_nbr	*tmp;
 	t_nbr	*cur;
@@ -23,11 +23,11 @@ void	rra(t_data *td, int rrr)
 		cur = cur->next;
 	cur->next = NULL;
 	add_element(&td->a->lst, tmp, 0);
-	if (!rrr)
+	if (print && !rrr)
 		printf("rra\n");
 }
 
-void	rrb(t_data *td, int rrr)
+void	rrb(t_data *td, int rrr, int print)
 {
 	t_nbr	*tmp;
 	t_nbr	*cur;
@@ -38,13 +38,14 @@ void	rrb(t_data *td, int rrr)
 		cur = cur->next;
 	cur->next = NULL;
 	add_element(&td->b->lst, tmp, 0);
-	if (!rrr)
+	if (print && !rrr)
 		printf("rrb\n");
 }
 
-void	rrr(t_data *td, int rrr)
+void	rrr(t_data *td, int rrr, int print)
 {
-	rra(td, rrr);
-	rrb(td, rrr);
-	printf("rrr\n");
+	rra(td, rrr, print);
+	rrb(td, rrr, print);
+	if (print)
+		printf("rrr\n");
 }

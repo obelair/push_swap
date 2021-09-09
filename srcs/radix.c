@@ -6,7 +6,7 @@
 /*   By: obelair <obelair@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/31 22:10:43 by obelair           #+#    #+#             */
-/*   Updated: 2021/09/04 16:55:49 by obelair          ###   ########.fr       */
+/*   Updated: 2021/09/09 11:37:49 by obelair          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@ void	radix(t_data *td)
 	while (i > 0 && ascending_sort(td->a->lst))
 	{
 		if ((td->a->lst->ind >> td->bit) & 1)
-			ra(td, 0);
+			ra(td, 0, 1);
 		else
-			pb(td);
+			pb(td, 1);
 		i--;
 	}
 	while (td->b->len)
-		pa(td);
+		pa(td, 1);
 	td->bit++;
 }

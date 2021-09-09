@@ -6,7 +6,7 @@
 /*   By: obelair <obelair@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/31 19:39:04 by obelair           #+#    #+#             */
-/*   Updated: 2021/08/30 19:12:05 by obelair          ###   ########.fr       */
+/*   Updated: 2021/09/09 11:08:23 by obelair          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,19 @@
 
 void	write_error(int err, char *str)
 {
+	printf("Error\n");
 	if (!err)
-		printf("Not enough argument!\n");
+		printf("\t--> Not enough argument!\n");
 	else if (err == 1)
-		printf("%s is not a number!\n", str);
+		printf("\t--> %s is not a number!\n", str);
 	else if (err == 2)
-		printf("'%s' is already existing!\n", str);
+		printf("\t--> '%s' is already existing!\n", str);
 	else if (err == 3)
-		printf("Cannot allocate memory!\n");
+		printf("\t--> Cannot allocate memory!\n");
 	else if (err == 4)
-		printf("%s is not an int!\n", str);
+		printf("\t--> %s is not an int!\n", str);
+	else if (err == 5)
+		printf("\t--> '%s' is not an instruction!\n", str);
 }
 
 void	ft_exit(t_data *td, int err, char *str)
