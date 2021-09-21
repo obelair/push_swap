@@ -22,7 +22,6 @@ PATH_HEADERS=	incs
 PATH_SRCS	=	srcs
 PATH_OBJS	=	objs
 
-
 # === Compil === #
 
 CC			=	gcc

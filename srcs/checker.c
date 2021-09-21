@@ -6,7 +6,7 @@
 /*   By: obelair <obelair@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 09:38:42 by obelair           #+#    #+#             */
-/*   Updated: 2021/09/09 11:36:09 by obelair          ###   ########lyon.fr   */
+/*   Updated: 2021/09/21 10:23:22 by obelair          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,16 +53,20 @@ int	main(int ac, char **av)
 	t_data	td;
 	char	*line;
 
-	parsing_arg(&td, ac, av);
-	while (get_next_line(0, &line))
+	if (ac != 1)
 	{
-		if (ft_lstadd_void(&td.list, line, 0))
-			ft_exit(&td, 3, NULL);
-		execute_operation(&td, line);
+		parsing_arg(&td, ac, av);
+		while (get_next_line(0, &line))
+		{
+			if (ft_lstadd_void(&td.list, line, 0))
+				ft_exit(&td, 3, NULL);
+			execute_operation(&td, line);
+		}
+		if (ascending_sort(td.a->lst) || td.b->len)
+			printf("KO\n");
+		else
+			printf("OK\n");
+		return (end_prog(&td));
 	}
-	if (ascending_sort(td.a->lst) || td.b->len)
-		printf("KO\n");
-	else
-		printf("OK\n");
-	return (end_prog(&td));
+	return (EXIT_SUCCESS);
 }
